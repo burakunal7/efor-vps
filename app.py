@@ -13,7 +13,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'efor_bilisim_secret_key_2024')
-
+# bu bir test deployudur
 # Session ayarları
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)  # 24 saat oturum
 
