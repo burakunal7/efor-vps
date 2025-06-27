@@ -82,7 +82,7 @@ services = [
 
 # Admin kullanıcı bilgileri (gerçek kullanımda veritabanından gelir)
 ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "efor2024"  # Güçlü bir şifre kullanın!
+ADMIN_PASSWORD = "efor2024!"  # Güçlü bir şifre kullanın!
 
 def is_admin_logged_in():
     """Admin giriş yapmış mı kontrol et"""
