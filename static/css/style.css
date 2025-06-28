@@ -202,10 +202,11 @@ body {
 
 /* Navigation Styles */
 .navbar {
-    background-color: rgba(18, 18, 18, 0.95) !important;
+    background: rgba(18, 18, 18, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
     transition: all 0.3s ease;
+    z-index: 1050;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar-brand {
@@ -248,6 +249,8 @@ body {
     padding: 120px 0 80px 0;
     position: relative;
     overflow: hidden;
+    margin-top: 80px !important;
+    padding-top: 2rem !important;
 }
 
 .hero-section::before {

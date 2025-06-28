@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.scrollY > 50) {
             navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.98)';
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            navbar.style.zIndex = '1050';
         } else {
             navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.95)';
             navbar.style.boxShadow = 'none';
+            navbar.style.zIndex = '1050';
         }
     });
 
@@ -552,4 +554,25 @@ document.addEventListener('DOMContentLoaded', function() {
             showPageTransition();
         });
     });
+});
+
+// Flash messages auto-hide
+const alerts = document.querySelectorAll('.alert');
+alerts.forEach(alert => {
+    // Alert'i navbar'ın altında kalmayacak şekilde konumlandır
+    alert.style.position = 'relative';
+    alert.style.zIndex = '1040';
+    alert.style.marginTop = '100px';
+    
+    // 5 saniye sonra otomatik gizle
+    setTimeout(() => {
+        if (alert && alert.parentNode) {
+            alert.classList.remove('show');
+            setTimeout(() => {
+                if (alert && alert.parentNode) {
+                    alert.parentNode.removeChild(alert);
+                }
+            }, 300);
+        }
+    }, 5000);
 }); 
