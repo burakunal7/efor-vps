@@ -18,10 +18,10 @@ app.secret_key = os.environ.get('SECRET_KEY', 'efor_bilisim_secret_key_2024')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)  # 24 saat oturum
 
 # E-posta ayarları (environment variables kullanın)
-SMTP_SERVER = os.environ.get('SMTP_SERVER', "ger-arya.panel-giris.com")
-SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
-SMTP_USERNAME = os.environ.get('SMTP_USERNAME', "info@eforbilisim.com")
-SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', "1475369Efor/*")
+SMTP_SERVER = os.environ.get('SMTP_SERVER', "smtp.gmail.com")
+SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
+SMTP_USERNAME = os.environ.get('SMTP_USERNAME', "your-gmail@gmail.com")
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', "your-app-password")
 RECIPIENT_EMAIL = os.environ.get('RECIPIENT_EMAIL', "info@eforbilisim.com")
 
 # Teklifler dosyası
@@ -246,16 +246,11 @@ def contact():
         # Dosyaya kaydet
         file_saved = save_quote_to_file(quote_data)
         
-        # E-posta göndermeyi dene
+        # E-posta gönderimi devre dışı
         email_sent = False
-        if SMTP_USERNAME != "your-email@gmail.com":
-            email_sent = send_email(name, email, phone, company, service_name, urgency_name, message)
         
         if file_saved:
-            if email_sent:
-                flash('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success')
-            else:
-                flash('Mesajınız kaydedildi. E-posta ayarları yapılandırılmadığı için e-posta gönderilemedi.', 'warning')
+            flash('Mesajınız başarıyla kaydedildi! En kısa sürede size telefon ile dönüş yapacağız.', 'success')
         else:
             flash('Teknik bir sorun oluştu. Lütfen telefon ile iletişime geçin.', 'error')
         
@@ -318,4 +313,4 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-     app.run(host='0.0.0.0', port=80, debug=False)
+     app.run(host='0.0.0.0', port=80, debug=True)
