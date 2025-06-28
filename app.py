@@ -18,10 +18,10 @@ app.secret_key = os.environ.get('SECRET_KEY', 'efor_bilisim_secret_key_2024')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)  # 24 saat oturum
 
 # E-posta ayarları (environment variables kullanın)
-SMTP_SERVER = os.environ.get('SMTP_SERVER', "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
-SMTP_USERNAME = os.environ.get('SMTP_USERNAME', "your-email@gmail.com")
-SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', "your-app-password")
+SMTP_SERVER = os.environ.get('SMTP_SERVER', "ger-arya.panel-giris.com")
+SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
+SMTP_USERNAME = os.environ.get('SMTP_USERNAME', "info@eforbilisim.com")
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', "1475369Efor/*")
 RECIPIENT_EMAIL = os.environ.get('RECIPIENT_EMAIL', "info@eforbilisim.com")
 
 # Teklifler dosyası
