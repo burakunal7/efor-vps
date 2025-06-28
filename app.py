@@ -80,9 +80,9 @@ services = [
     }
 ]
 
-# Admin kullanıcı bilgileri (gerçek kullanımda veritabanından gelir)
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "efor2024!"  # Güçlü bir şifre kullanın!
+# Admin kullanıcı bilgileri (environment variables kullanın)
+ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')  # .env dosyasından alınır
 
 def is_admin_logged_in():
     """Admin giriş yapmış mı kontrol et"""
@@ -119,7 +119,7 @@ def save_quote_to_file(quote_data):
         return False
 
 def send_email(name, email, phone, company, service, urgency, message):
-    """Teklif e-postası gönder (ek dosya olmadan)"""
+    """Teklif e-postası gönder (SSL/TLS ile)"""
     try:
         subject = f"Yeni Teklif Talebi - {name}"
         html_content = f"""
@@ -154,8 +154,9 @@ def send_email(name, email, phone, company, service, urgency, message):
         msg['To'] = RECIPIENT_EMAIL
         html_part = MIMEText(html_content, 'html', 'utf-8')
         msg.attach(html_part)
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()
+        
+        # SSL/TLS bağlantısı (Port 465 için)
+        with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
             server.login(SMTP_USERNAME, SMTP_PASSWORD)
             server.send_message(msg)
         return True
