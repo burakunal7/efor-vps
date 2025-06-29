@@ -1,20 +1,95 @@
 {
-    "name": "Efor Bilişim",
+    "name": "Efor Bilişim - İstanbul'da Profesyonel Bilgisayar Tamiri ve Uydu Kurulumu",
     "short_name": "Efor Bilişim",
-    "description": "IT Destek ve Donanım Hizmetleri",
+    "description": "Efor Bilişim İstanbul'da profesyonel bilgisayar tamiri, uydu kurulumu, kamera kurulumu ve IT destek hizmetleri. Söğütlüçeşme Mahallesi bilgisayar tamiri.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#121212",
+    "theme_color": "#00d4aa",
+    "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "/static/images/android-chrome-192x192.png",
+            "src": "/static/images/efor-logo.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
-            "src": "/static/images/android-chrome-512x512.png",
+            "src": "/static/images/efor-logo.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "120x120",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "114x114",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "76x76",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "60x60",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "57x57",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "32x32",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/static/images/efor-logo.png",
+            "sizes": "16x16",
+            "type": "image/png",
+            "purpose": "any"
         }
     ],
-    "theme_color": "#00d4aa",
-    "background_color": "#121212",
-    "display": "standalone"
+    "categories": ["business", "technology", "services"],
+    "lang": "tr",
+    "dir": "ltr",
+    "scope": "/",
+    "prefer_related_applications": false
 } 

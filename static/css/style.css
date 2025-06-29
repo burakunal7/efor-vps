@@ -214,6 +214,19 @@ body {
     font-weight: 700;
 }
 
+.navbar-brand img {
+    height: 250px !important;
+    max-height: 250px !important;
+    width: auto !important;
+    transition: all 0.3s ease;
+    z-index: 1052 !important;
+    position: relative;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
 .navbar-nav .nav-link {
     color: var(--text-secondary) !important;
     font-weight: 500;
@@ -820,8 +833,8 @@ body {
 .footer {
     background-color: var(--dark-surface);
     border-top: 1px solid var(--border-color);
-    padding-top: 3rem;
-    padding-bottom: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
 }
 
 .footer a:hover {
@@ -1291,30 +1304,30 @@ html {
 .footer {
     background-color: var(--dark-surface);
     border-top: 1px solid var(--border-color);
-    padding-top: 3rem;
-    padding-bottom: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
 }
 .social-icon-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background: rgba(255, 107, 53, 0.08);
-    color: var(--orange-neon);
-    font-size: 1.3rem;
+    background: rgba(0, 212, 170, 0.08);
+    color: var(--teal-primary);
+    font-size: 1.1rem;
     transition: background 0.2s, color 0.2s, transform 0.2s;
-    border: 1.5px solid var(--orange-neon);
+    border: 1.5px solid var(--teal-primary);
 }
 
 .social-icon-link:hover {
-    background: linear-gradient(135deg, var(--orange-neon), var(--orange-neon-light));
+    background: linear-gradient(135deg, var(--teal-primary), var(--teal-light));
     color: var(--dark-bg);
-    border-color: var(--orange-neon-light);
+    border-color: var(--teal-light);
     transform: translateY(-2px) scale(1.08);
     text-decoration: none;
-    box-shadow: 0 0 20px 4px var(--orange-neon);
+    box-shadow: 0 0 20px 4px var(--teal-primary);
 }
 .footer-link {
     color: var(--text-muted);
@@ -1404,4 +1417,215 @@ html {
     .navbar-slogan {
         display: none !important;
     }
+}
+
+/* Footer logo */
+.footer img[alt*="Logo"] {
+    height: 120px !important;
+    max-height: 120px !important;
+    width: auto !important;
+    transition: all 0.3s ease;
+}
+
+.footer img[alt*="Logo"]:hover {
+    transform: scale(1.05);
+}
+
+/* Admin paneli logo */
+.card-body img[alt*="Logo"] {
+    height: 100px !important;
+    max-height: 100px !important;
+    width: auto !important;
+}
+
+/* Referans logoları */
+.reference-logo {
+    height: 100px !important;
+    max-height: 100px !important;
+    width: auto !important;
+    transition: all 0.3s ease;
+}
+
+.reference-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive logo boyutları */
+@media (max-width: 768px) {
+    .navbar-brand img {
+        height: 180px !important;
+        max-height: 180px !important;
+    }
+    
+    .footer img[alt*="Logo"] {
+        height: 100px !important;
+        max-height: 100px !important;
+    }
+    
+    .loading-logo-img {
+        height: 100px !important;
+        max-height: 100px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand img {
+        height: 150px !important;
+        max-height: 150px !important;
+    }
+    
+    .footer img[alt*="Logo"] {
+        height: 80px !important;
+        max-height: 80px !important;
+    }
+    
+    .loading-logo-img {
+        height: 80px !important;
+        max-height: 80px !important;
+    }
+}
+
+/* Navbar Telefon Numarası Stilleri */
+.navbar-phone {
+    position: relative;
+    z-index: 1051;
+}
+
+.navbar-phone-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 25px;
+    background: rgba(0, 212, 170, 0.1);
+    border: 2px solid var(--teal-primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 212, 170, 0.3);
+}
+
+.navbar-phone-link:hover {
+    background: linear-gradient(135deg, var(--teal-primary), var(--teal-light));
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 212, 170, 0.5);
+    text-decoration: none;
+}
+
+.navbar-phone-link i {
+    font-size: 1.1rem;
+    animation: pulse 2s infinite;
+}
+
+.navbar-phone-text {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive telefon numarası */
+@media (max-width: 991px) {
+    .navbar-phone {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-phone-link {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    
+    .navbar-phone-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Navbar Küçük Telefon Numarası Stilleri */
+.navbar-phone-small {
+    position: relative;
+    z-index: 1051;
+}
+
+.navbar-phone-link-small {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+    border-radius: 15px;
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid var(--teal-primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 212, 170, 0.2);
+}
+
+.navbar-phone-link-small:hover {
+    background: linear-gradient(135deg, var(--teal-primary), var(--teal-light));
+    color: var(--dark-bg);
+    transform: translateY(-1px);
+    box-shadow: 0 0 12px rgba(0, 212, 170, 0.4);
+    text-decoration: none;
+}
+
+.navbar-phone-link-small i {
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+.navbar-phone-text-small {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    font-size: 0.8rem;
+}
+
+/* Responsive küçük telefon numarası */
+@media (max-width: 991px) {
+    .navbar-phone-small {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-phone-link-small {
+        font-size: 0.75rem;
+        padding: 3px 6px;
+    }
+    
+    .navbar-phone-text-small {
+        font-size: 0.7rem;
+    }
+}
+
+/* Values Section - Equal Height Cards */
+.values-section .value-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.values-section .value-card .value-icon {
+    flex-shrink: 0;
+}
+
+.values-section .value-card h5 {
+    flex-shrink: 0;
+}
+
+.values-section .value-card p {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+/* Icon Styles */
+.mission-icon,
+.value-icon,
+.category-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
 } 

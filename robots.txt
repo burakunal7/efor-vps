@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://eforbilisim.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/quotes
+
+# Allow important files
+Allow: /static/images/efor-logo.png
+Allow: /static/css/
+Allow: /static/js/ 
