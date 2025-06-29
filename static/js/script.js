@@ -200,7 +200,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!elements.navbarToggler.contains(e.target) && !elements.navbarCollapse.contains(e.target)) {
+            const navbarBrand = document.querySelector('.navbar-brand');
+            if (!elements.navbarToggler.contains(e.target) && 
+                !elements.navbarCollapse.contains(e.target) && 
+                !navbarBrand.contains(e.target)) {
                 if (elements.navbarCollapse.classList.contains('show')) {
                     elements.navbarCollapse.classList.remove('show');
                     elements.navbarToggler.setAttribute('aria-expanded', 'false');
@@ -425,6 +428,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     console.log('Efor Bilişim web sitesi başarıyla başlatıldı!');
+
+    // Navbar brand link enhancement
+    const navbarBrand = document.querySelector('.navbar-brand');
+    if (navbarBrand) {
+        navbarBrand.addEventListener('click', function(e) {
+            // Prevent any interference from other event listeners
+            e.stopPropagation();
+            
+            // Navigate to home page
+            window.location.href = '/';
+        });
+        
+        // Also make sure the link is clickable
+        navbarBrand.style.pointerEvents = 'auto';
+        navbarBrand.style.cursor = 'pointer';
+    }
 });
 
 // Contact Form Validation and Enhancement
