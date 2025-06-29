@@ -1628,4 +1628,60 @@ html {
     width: 50px;
     height: 50px;
     font-size: 1.5rem;
+}
+
+/* Mobile Navbar Enhancements */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        transition: all 0.3s ease;
+        max-height: 0;
+        overflow: hidden;
+    }
+    
+    .navbar-collapse.show {
+        max-height: 300px;
+        overflow: visible;
+    }
+    
+    .navbar-nav {
+        padding: 1rem 0;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    .navbar-toggler {
+        border: none;
+        padding: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-toggler:focus {
+        box-shadow: none;
+        outline: none;
+    }
+    
+    .navbar-toggler-icon {
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-expanded .navbar-toggler-icon {
+        transform: rotate(90deg);
+    }
+}
+
+/* Ensure navbar collapse works properly */
+.navbar-collapse.collapsing {
+    height: auto;
+    transition: height 0.35s ease;
+}
+
+.navbar-collapse.show {
+    display: block !important;
 } 

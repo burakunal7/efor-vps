@@ -307,6 +307,16 @@ def view_quotes():
     except Exception as e:
         return f"Teklifler yüklenirken hata oluştu: {e}"
 
+@app.route('/robots.txt')
+def robots_txt():
+    """Robots.txt dosyasını döndür"""
+    return app.send_static_file('robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    """Sitemap.xml dosyasını döndür"""
+    return app.send_static_file('sitemap.xml')
+
 @app.errorhandler(404)
 def page_not_found(e):
     """404 hata sayfası"""
