@@ -1,22 +1,65 @@
 /* Custom CSS for Efor Bilişim - Dark Theme */
 
 :root {
+    /* Ana Renkler */
+    --teal-primary: #00d4aa;
+    --teal-secondary: #00b894;
+    --teal-light: #00e6b8;
+    --teal-dark: #00a085;
+    
+    /* Orange Neon Renkler */
+    --orange-neon: #ff6b35;
+    --orange-neon-light: #ff8a5c;
+    --orange-neon-dark: #e55a2b;
+    
+    /* Arka Plan Renkleri */
     --dark-bg: #121212;
     --dark-surface: #1e1e1e;
     --dark-card: #2d2d2d;
-    --teal-primary: #00d4aa;
-    --teal-secondary: #00b894;
-    --teal-light: #00e5b8;
-    --orange-neon: #ff6b35;
-    --orange-neon-light: #ff8c42;
-    --orange-neon-dark: #e55a2b;
+    
+    /* Metin Renkleri */
     --text-primary: #ffffff;
     --text-secondary: #b3b3b3;
     --text-muted: #808080;
-    --border-color: #404040;
-    --success-color: #00d4aa;
+    
+    /* Uyarı Renkleri */
+    --success-color: #28a745;
+    --warning-color: #ffc107;
     --danger-color: #ff6b6b;
-    --warning-color: #ffd93d;
+    --info-color: #17a2b8;
+    
+    /* Gradient Tanımları */
+    --gradient-teal: linear-gradient(135deg, var(--teal-primary), var(--teal-light));
+    --gradient-teal-horizontal: linear-gradient(90deg, var(--teal-primary), var(--teal-light));
+    --gradient-orange: linear-gradient(135deg, var(--orange-neon), var(--orange-neon-light));
+    --gradient-dark: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+    --gradient-teal-transparent: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 184, 148, 0.1));
+    
+    /* Gölge Tanımları */
+    --shadow-teal: 0 4px 20px rgba(0, 212, 170, 0.4);
+    --shadow-orange: 0 4px 20px rgba(255, 107, 53, 0.4);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 4px 24px rgba(0,0,0,0.12);
+    --shadow-focus: 0 0 0 0.2rem rgba(0, 212, 170, 0.25);
+    
+    /* Geçiş Efektleri */
+    --transition-fast: all 0.2s ease;
+    --transition-normal: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+    
+    /* Border Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
 }
 
 /* Global Styles */

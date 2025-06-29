@@ -2,17 +2,42 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    // DOM elementlerini cache'le
+    const elements = {
+        navbar: document.querySelector('.navbar'),
+        navbarToggler: document.querySelector('.navbar-toggler'),
+        navbarCollapse: document.querySelector('.navbar-collapse'),
+        navLinks: document.querySelectorAll('.navbar-nav .nav-link'),
+        contactForm: document.querySelector('form[method="POST"]'),
+        cards: document.querySelectorAll('.feature-card, .service-card, .mission-card, .value-card, .team-card, .category-card, .pricing-card'),
+        counters: document.querySelectorAll('.counter'),
+        serviceCards: document.querySelectorAll('.service-card, .service-detail-card'),
+        pricingCards: document.querySelectorAll('.pricing-card'),
+        formFields: document.querySelectorAll('.form-control, .form-select'),
+        serviceSelect: document.getElementById('service'),
+        messageTextarea: document.getElementById('message'),
+        phoneInput: document.getElementById('phone'),
+        charCount: document.getElementById('charCount'),
+        submitBtn: document.getElementById('submitBtn'),
+        resetBtn: document.getElementById('resetBtn'),
+        loadingOverlay: document.getElementById('loading-overlay'),
+        pageContent: document.querySelector('.page-content'),
+        heroSection: document.querySelector('.hero-section'),
+        scrollToTopBtn: null
+    };
+    
     // Navbar scroll effect
-    const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', function() {
+        if (!elements.navbar) return;
+        
         if (window.scrollY > 50) {
-            navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-            navbar.style.zIndex = '1050';
+            elements.navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.98)';
+            elements.navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            elements.navbar.style.zIndex = '1050';
         } else {
-            navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.95)';
-            navbar.style.boxShadow = 'none';
-            navbar.style.zIndex = '1050';
+            elements.navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.95)';
+            elements.navbar.style.boxShadow = 'none';
+            elements.navbar.style.zIndex = '1050';
         }
     });
 
@@ -31,9 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form validation
-    const contactForm = document.querySelector('form[method="POST"]');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+    if (elements.contactForm) {
+        elements.contactForm.addEventListener('submit', function(e) {
             const name = document.getElementById('name');
             const email = document.getElementById('email');
             const message = document.getElementById('message');
@@ -74,14 +98,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add loading animation to cards
-    const cards = document.querySelectorAll('.feature-card, .service-card, .mission-card, .value-card, .team-card, .category-card, .pricing-card');
-    cards.forEach((card, index) => {
+    elements.cards.forEach((card, index) => {
         card.style.animationDelay = `${index * 0.1}s`;
         card.classList.add('loading');
     });
 
     // Counter animation for statistics
-    const counters = document.querySelectorAll('.counter');
     const observerOptions = {
         threshold: 0.5,
         rootMargin: '0px 0px -100px 0px'
@@ -112,13 +134,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    counters.forEach(counter => {
+    elements.counters.forEach(counter => {
         observer.observe(counter);
     });
 
     // Service card hover effects
-    const serviceCards = document.querySelectorAll('.service-card, .service-detail-card');
-    serviceCards.forEach(card => {
+    elements.serviceCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
         });
@@ -129,31 +150,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Pricing card selection
-    const pricingCards = document.querySelectorAll('.pricing-card');
-    pricingCards.forEach(card => {
+    elements.pricingCards.forEach(card => {
         card.addEventListener('click', function() {
             // Remove active class from all cards
-            pricingCards.forEach(c => c.classList.remove('active'));
+            elements.pricingCards.forEach(c => c.classList.remove('active'));
             // Add active class to clicked card
             this.classList.add('active');
         });
     });
 
     // Mobile menu toggle enhancement
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
-    if (navbarToggler && navbarCollapse) {
-        navbarToggler.addEventListener('click', function(e) {
+    if (elements.navbarToggler && elements.navbarCollapse) {
+        elements.navbarToggler.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
             // Toggle show class
-            navbarCollapse.classList.toggle('show');
+            elements.navbarCollapse.classList.toggle('show');
             
             // Toggle aria-expanded attribute
-            const isExpanded = navbarCollapse.classList.contains('show');
-            navbarToggler.setAttribute('aria-expanded', isExpanded);
+            const isExpanded = elements.navbarCollapse.classList.contains('show');
+            elements.navbarToggler.setAttribute('aria-expanded', isExpanded);
             
             // Add/remove collapsed class to navbar
             const navbar = document.querySelector('.navbar');
@@ -167,12 +184,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Close mobile menu when clicking on a link
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        navLinks.forEach(link => {
+        elements.navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                if (navbarCollapse.classList.contains('show')) {
-                    navbarCollapse.classList.remove('show');
-                    navbarToggler.setAttribute('aria-expanded', 'false');
+                if (elements.navbarCollapse.classList.contains('show')) {
+                    elements.navbarCollapse.classList.remove('show');
+                    elements.navbarToggler.setAttribute('aria-expanded', 'false');
                     
                     const navbar = document.querySelector('.navbar');
                     if (navbar) {
@@ -184,10 +200,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!navbarToggler.contains(e.target) && !navbarCollapse.contains(e.target)) {
-                if (navbarCollapse.classList.contains('show')) {
-                    navbarCollapse.classList.remove('show');
-                    navbarToggler.setAttribute('aria-expanded', 'false');
+            if (!elements.navbarToggler.contains(e.target) && !elements.navbarCollapse.contains(e.target)) {
+                if (elements.navbarCollapse.classList.contains('show')) {
+                    elements.navbarCollapse.classList.remove('show');
+                    elements.navbarToggler.setAttribute('aria-expanded', 'false');
                     
                     const navbar = document.querySelector('.navbar');
                     if (navbar) {
@@ -200,8 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close mobile menu on window resize
         window.addEventListener('resize', function() {
             if (window.innerWidth > 991) {
-                navbarCollapse.classList.remove('show');
-                navbarToggler.setAttribute('aria-expanded', 'false');
+                elements.navbarCollapse.classList.remove('show');
+                elements.navbarToggler.setAttribute('aria-expanded', 'false');
                 
                 const navbar = document.querySelector('.navbar');
                 if (navbar) {
@@ -212,10 +228,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Scroll to top button
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
-    scrollToTopBtn.className = 'scroll-to-top';
-    scrollToTopBtn.style.cssText = `
+    elements.scrollToTopBtn = document.createElement('button');
+    elements.scrollToTopBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
+    elements.scrollToTopBtn.className = 'scroll-to-top';
+    elements.scrollToTopBtn.style.cssText = `
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -233,19 +249,19 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 1.2rem;
     `;
 
-    document.body.appendChild(scrollToTopBtn);
+    document.body.appendChild(elements.scrollToTopBtn);
 
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.visibility = 'visible';
+            elements.scrollToTopBtn.style.opacity = '1';
+            elements.scrollToTopBtn.style.visibility = 'visible';
         } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.visibility = 'hidden';
+            elements.scrollToTopBtn.style.opacity = '0';
+            elements.scrollToTopBtn.style.visibility = 'hidden';
         }
     });
 
-    scrollToTopBtn.addEventListener('click', function() {
+    elements.scrollToTopBtn.addEventListener('click', function() {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -253,8 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form field focus effects
-    const formFields = document.querySelectorAll('.form-control, .form-select');
-    formFields.forEach(field => {
+    elements.formFields.forEach(field => {
         field.addEventListener('focus', function() {
             this.parentElement.classList.add('focused');
         });
@@ -267,9 +282,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Service type selection enhancement
-    const serviceSelect = document.getElementById('service');
-    if (serviceSelect) {
-        serviceSelect.addEventListener('change', function() {
+    if (elements.serviceSelect) {
+        elements.serviceSelect.addEventListener('change', function() {
             if (this.value) {
                 this.classList.add('selected');
             } else {
@@ -279,9 +293,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Contact form auto-resize textarea
-    const messageTextarea = document.getElementById('message');
-    if (messageTextarea) {
-        messageTextarea.addEventListener('input', function() {
+    if (elements.messageTextarea) {
+        elements.messageTextarea.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = this.scrollHeight + 'px';
         });
@@ -385,12 +398,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add parallax effect to hero section
-    const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
+    if (elements.heroSection) {
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.5;
-            heroSection.style.transform = `translateY(${rate}px)`;
+            elements.heroSection.style.transform = `translateY(${rate}px)`;
         });
     }
 

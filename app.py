@@ -18,10 +18,10 @@ app.secret_key = os.environ.get('SECRET_KEY', 'efor_bilisim_secret_key_2024')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)  # 24 saat oturum
 
 # E-posta ayarları (environment variables kullanın)
-SMTP_SERVER = os.environ.get('SMTP_SERVER', "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
-SMTP_USERNAME = os.environ.get('SMTP_USERNAME', "your-gmail@gmail.com")
-SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', "your-app-password")
+SMTP_SERVER = os.environ.get('SMTP_SERVER', "ger-arya.panel-giris.com")
+SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
+SMTP_USERNAME = os.environ.get('SMTP_USERNAME', "info@eforbilisim.com")
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD')  # .env dosyasından alınır
 RECIPIENT_EMAIL = os.environ.get('RECIPIENT_EMAIL', "info@eforbilisim.com")
 
 # Teklifler dosyası
@@ -124,41 +124,87 @@ def send_email(name, email, phone, company, service, urgency, message):
         subject = f"Yeni Teklif Talebi - {name}"
         html_content = f"""
         <html>
-        <body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333;\">
-            <h2 style=\"color: #00d4aa;\">Yeni Teklif Talebi</h2>
-            <p><strong>Tarih:</strong> {datetime.now().strftime('%d.%m.%Y %H:%M')}</p>
-            <h3 style=\"color: #00d4aa;\">Müşteri Bilgileri:</h3>
-            <ul>
-                <li><strong>Ad Soyad:</strong> {name}</li>
-                <li><strong>E-posta:</strong> {email}</li>
-                <li><strong>Telefon:</strong> {phone or 'Belirtilmemiş'}</li>
-                <li><strong>Şirket:</strong> {company or 'Belirtilmemiş'}</li>
-            </ul>
-            <h3 style=\"color: #00d4aa;\">Hizmet Bilgileri:</h3>
-            <p><strong>Hizmet Türü:</strong> {service or 'Belirtilmemiş'}</p>
-            <p><strong>Öncelik:</strong> {urgency or 'Normal'}</p>
-            <h3 style=\"color: #00d4aa;\">Mesaj:</h3>
-            <div style=\"background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0;\">
-                {message.replace(chr(10), '<br>')}
+        <head>
+            <meta charset="utf-8">
+            <style>
+                body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; }}
+                .header {{ background: linear-gradient(135deg, #00d4aa, #00b894); color: white; padding: 20px; border-radius: 8px 8px 0 0; }}
+                .content {{ background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }}
+                .info-section {{ background: white; padding: 15px; margin: 15px 0; border-radius: 5px; border-left: 4px solid #00d4aa; }}
+                .message-box {{ background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 15px 0; border: 1px solid #ddd; }}
+                .footer {{ margin-top: 20px; padding-top: 15px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }}
+                .highlight {{ color: #00d4aa; font-weight: bold; }}
+                .urgent {{ background: #fff3cd; border-left-color: #ffc107; }}
+                .very-urgent {{ background: #f8d7da; border-left-color: #dc3545; }}
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1 style="margin: 0;">📧 Yeni Teklif Talebi</h1>
+                <p style="margin: 5px 0 0 0; opacity: 0.9;">Efor Bilişim Web Sitesi</p>
             </div>
-            <hr style=\"border: 1px solid #ddd; margin: 20px 0;\">
-            <p style=\"font-size: 12px; color: #666;\">
-                Bu e-posta Efor Bilişim web sitesinden otomatik olarak gönderilmiştir.
-            </p>
+            
+            <div class="content">
+                <div class="info-section">
+                    <h3 style="margin-top: 0; color: #00d4aa;">📅 Talep Tarihi</h3>
+                    <p><strong>{datetime.now().strftime('%d.%m.%Y %H:%M')}</strong></p>
+                </div>
+                
+                <div class="info-section">
+                    <h3 style="margin-top: 0; color: #00d4aa;">👤 Müşteri Bilgileri</h3>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>Ad Soyad:</strong> {name}</li>
+                        <li><strong>E-posta:</strong> <a href="mailto:{email}" style="color: #00d4aa;">{email}</a></li>
+                        <li><strong>Telefon:</strong> <a href="tel:{phone}" style="color: #00d4aa;">{phone or 'Belirtilmemiş'}</a></li>
+                        <li><strong>Şirket:</strong> {company or 'Belirtilmemiş'}</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section {'urgent' if urgency == 'Acil' else 'very-urgent' if urgency == 'Çok Acil' else ''}">
+                    <h3 style="margin-top: 0; color: #00d4aa;">🔧 Hizmet Bilgileri</h3>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>Hizmet Türü:</strong> {service or 'Belirtilmemiş'}</li>
+                        <li><strong>Öncelik Durumu:</strong> <span class="highlight">{urgency or 'Normal'}</span></li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3 style="margin-top: 0; color: #00d4aa;">💬 Müşteri Mesajı</h3>
+                    <div class="message-box">
+                        {message.replace(chr(10), '<br>')}
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    <p style="margin: 0;">
+                        📧 Bu e-posta <strong>Efor Bilişim</strong> web sitesinden otomatik olarak gönderilmiştir.<br>
+                        🌐 <a href="https://eforbilisim.com" style="color: #00d4aa;">eforbilisim.com</a> | 
+                        📞 <a href="tel:+905368785157" style="color: #00d4aa;">+90 536 878 51 57</a>
+                    </p>
+                </div>
+            </div>
         </body>
         </html>
         """
+        
         msg = MIMEMultipart('alternative')
         msg['Subject'] = subject
-        msg['From'] = SMTP_USERNAME
+        msg['From'] = f"Efor Bilişim <{SMTP_USERNAME}>"
         msg['To'] = RECIPIENT_EMAIL
+        msg['Reply-To'] = email
+        msg['Date'] = datetime.now().strftime('%a, %d %b %Y %H:%M:%S %z')
+        
+        # HTML içeriği ekle
         html_part = MIMEText(html_content, 'html', 'utf-8')
         msg.attach(html_part)
         
         # SSL/TLS bağlantısı (Port 465 için)
+        print(f"E-posta gönderiliyor... SMTP: {SMTP_SERVER}:{SMTP_PORT}")
         with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
             server.login(SMTP_USERNAME, SMTP_PASSWORD)
             server.send_message(msg)
+            print("E-posta başarıyla gönderildi!")
+        
         return True
     except Exception as e:
         print(f"E-posta gönderme hatası: {e}")
@@ -246,11 +292,13 @@ def contact():
         # Dosyaya kaydet
         file_saved = save_quote_to_file(quote_data)
         
-        # E-posta gönderimi devre dışı
-        email_sent = False
+        # E-posta gönderimi aktif
+        email_sent = send_email(name, email, phone, company, service_name, urgency_name, message)
         
-        if file_saved:
-            flash('Mesajınız başarıyla kaydedildi! En kısa sürede size telefon ile dönüş yapacağız.', 'success')
+        if file_saved and email_sent:
+            flash('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success')
+        elif file_saved and not email_sent:
+            flash('Mesajınız kaydedildi fakat e-posta gönderilemedi. En kısa sürede size telefon ile dönüş yapacağız.', 'warning')
         else:
             flash('Teknik bir sorun oluştu. Lütfen telefon ile iletişime geçin.', 'error')
         
