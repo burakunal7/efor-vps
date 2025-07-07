@@ -370,5 +370,11 @@ def page_not_found(e):
     """404 hata sayfası"""
     return render_template('404.html'), 404
 
+
+@app.route('/favicon.ico')
+def favicon():
+    return app.send_static_file('favicon.ico')
+
 if __name__ == '__main__':
      app.run(host='0.0.0.0', port=80, debug=True)
+     
