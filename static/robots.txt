@@ -16,3 +16,4 @@ Disallow: /admin/quotes
 Allow: /static/images/efor-logo.png
 Allow: /static/css/
 Allow: /static/js/ 
+Allow: /favicon.ico
