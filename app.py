@@ -375,6 +375,42 @@ def page_not_found(e):
 def favicon():
     return app.send_static_file('favicon.ico')
 
+# Türkçe ve eski URL'ler için yönlendirme
+@app.route('/iletisim')
+@app.route('/iletisim/')
+def iletisim_redirect():
+    return redirect(url_for('contact'), code=301)
+
+@app.route('/hakkimizda')
+@app.route('/hakkimizda/')
+def hakkimizda_redirect():
+    return redirect(url_for('about'), code=301)
+
+@app.route('/hizmetler')
+@app.route('/hizmetler/')
+def hizmetler_redirect():
+    return redirect(url_for('services_page'), code=301)
+
+@app.route('/anasayfa')
+@app.route('/anasayfa/')
+def anasayfa_redirect():
+    return redirect(url_for('home'), code=301)
+
+@app.route('/bilgisayar-tamiri')
+@app.route('/bilgisayar-tamiri/')
+def bilgisayar_tamiri_redirect():
+    return redirect(url_for('services_page'), code=301)
+
+@app.route('/kamerali-guvenlik-sistemleri')
+@app.route('/kamerali-guvenlik-sistemleri/')
+def kamera_redirect():
+    return redirect(url_for('services_page'), code=301)
+
+@app.route('/uydu-ve-tv-sistemleri')
+@app.route('/uydu-ve-tv-sistemleri/')
+def uydu_redirect():
+    return redirect(url_for('services_page'), code=301)
+
 if __name__ == '__main__':
      app.run(host='0.0.0.0', port=80, debug=True)
      
